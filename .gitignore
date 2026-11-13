@@ -1,0 +1,18 @@
+# Nextflow
+.nextflow*
+work/
+.nf-test/
+
+# Bactopia and test outputs (default output folder is "bactopia")
+bactopia/
+test-run/
+results/
+
+# Logs and temporary files
+*.log
+.DS_Store
+# Machine-specific sample tables (contain absolute paths)
+*.samples.tsv
+data/test/test_samples.tsv
+data/fasta/
+.env

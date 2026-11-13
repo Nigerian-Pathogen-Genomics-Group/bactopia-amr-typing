@@ -1,0 +1,10 @@
+{
+  "name": "bactopia-amr-typing",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/java:1": { "version": "17" }
+  },
+  "postCreateCommand": "bash scripts/setup.sh",
+  "customizations": { "vscode": { "extensions": ["nextflow.nextflow"] } }
+}
