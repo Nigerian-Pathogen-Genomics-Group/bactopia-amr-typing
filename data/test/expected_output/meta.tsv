@@ -1,0 +1,6 @@
+sample	runtype	original_runtype	is_paired	is_compressed	species	genome_size
+GCA_002284675	assembly	assembly	true	true	Escherichia coli	5150000
+GCA_019583635	assembly	assembly	true	true	Escherichia coli	5150000
+GCA_059817405	assembly	assembly	true	true	Escherichia coli	5150000
+GCA_060466715	assembly	assembly	true	true	Escherichia coli	5150000
+GCA_060580055	assembly	assembly	true	true	Escherichia coli	5150000
