@@ -48,3 +48,10 @@ Petit III RA, Read TD. Bactopia: a flexible pipeline for complete analysis of ba
   The two schemes' STs are not comparable. Check whether to force one scheme (see `bactopia --help_all | grep -i mlst`).
 - Open question: most of the 6.5 hours may go to steps meant for raw reads (read simulation, QC, assembly).
   A leaner route for assemblies may exist.
+
+## Run the 125 genomes
+Force the standard E. coli MLST scheme for all isolates. On the 5 test genomes this typed all of them
+under `escherichia` (without it, one genome was typed with `escherichia_2`, whose STs are not comparable).
+This resolves the open MLST question above.
+
+    ./main.sh --input data/npgg_125_accessions.txt --env <seqera|ccloud> --mlst_scheme escherichia
