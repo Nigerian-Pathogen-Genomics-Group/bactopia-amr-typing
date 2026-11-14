@@ -55,3 +55,33 @@ under `escherichia` (without it, one genome was typed with `escherichia_2`, whos
 This resolves the open MLST question above.
 
     ./main.sh --input data/npgg_125_accessions.txt --env <seqera|ccloud> --mlst_scheme escherichia
+
+## What `main.sh` runs (the commands behind it)
+1. Download the assemblies (FASTA) listed in the accession file:
+
+       scripts/download_assemblies.sh data/test/test_accessions.txt data/test/fasta
+
+2. Make the sample table (it contains absolute paths, so it is not committed):
+
+       bactopia prepare --path data/test/fasta --species "Escherichia coli" > test-run.samples.tsv
+
+3. Run Bactopia:
+
+       bactopia --samples test-run.samples.tsv --outdir test-run \
+         --ask_merlin --ectyper_verify --amrfinderplus_organism Escherichia \
+         --max_cpus 2 --max_memory 5.GB -profile docker
+
+4. Re-run a single step on finished results with a Bactopia Tool (for example MLST with a forced scheme):
+
+       bactopia -profile docker --bactopia test-run --wf mlst --mlst_scheme escherichia
+
+## Results
+Merged tables for all genomes are in `<outdir>/bactopia-runs/<run>/merged-results/`:
+`amrfinderplus.tsv` (AMR, virulence and stress genes; point mutations are rows with Subtype `POINT`),
+`mlst.tsv`, `ectyper.tsv` (serotype and species check), `clermontyping.tsv`, `assembly-scan.tsv`, `meta.tsv`.
+The expected output of the 5 test genomes is in `data/test/expected_output/`.
+
+## Other bacteria
+Use `--species "<name>"` for the sample table and `--organism <group>` for AMRFinder+ point mutations
+(`Escherichia` is verified; for other groups check the names with `amrfinder --list_organisms`).
+The default MLST scheme is autodetected; force one with `--mlst_scheme <name>`.
